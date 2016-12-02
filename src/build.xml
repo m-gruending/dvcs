@@ -1,0 +1,47 @@
+<project name="BuildMitAnt" basedir="." default="clean">
+	 <property name="build" location="build"/>
+
+	<target name="clean" depends="run">
+		<delete dir="build"></delete>
+		<echo>Ordner gelöscht</echo>
+	</target>
+	
+	<target name="run" depends="test">
+    	<java classpath="build" classname="test.Streichholzspiel" fork="true">
+    	</java>
+		<echo>Programm ausgeführt</echo>
+	</target>
+	
+	<target name="test" depends="compile">
+		<junit printsummary="yes" fork="yes" haltonfailure="no">
+		  <classpath>
+		    <pathelement location="lib/junit-4.12.jar"/>
+		    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+		  	<pathelement path="${build}"/>
+		  </classpath>
+
+		  <test name="test.JUnitTest"></test>
+		  <formatter type="plain" usefile="false" />
+
+		</junit>
+		<echo>Test durchgeführt</echo>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="src" destdir="build" debug="on" source="1.8" includeantruntime="true" ></javac>
+		<echo>Dateien kompiliert</echo>
+	</target>
+	
+	<target name="init">
+	    <mkdir dir="${build}"/>
+	  	<echo>Build-Ordner erstellt</echo>
+	</target>
+
+	
+
+	
+
+ 
+
+
+</project>	
