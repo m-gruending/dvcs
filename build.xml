@@ -1,7 +1,7 @@
 <project name="BuildMitAnt" basedir="." default="clean">
 	 <property name="build" location="build"/>
 
-	<target name="clean" depends="run">
+	<target name="clean" depends="compile">
 		<delete dir="build"></delete>
 		<echo>Ordner gelöscht</echo>
 	</target>
